@@ -21,7 +21,9 @@ agent any
       stage('Execute python script') {
          steps {
             echo 'Execute python script'
-              sh "./Python_Script.py"
+              sh '''
+              "./Python_Script.py"
+              '''
          }
       }
       stage('Execute bash script') {
