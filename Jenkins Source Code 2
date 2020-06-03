@@ -1,3 +1,5 @@
+properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
+
 pipeline {
   agent any
 
@@ -10,12 +12,7 @@ pipeline {
       
       stage('C') {
          steps {
-            echo 'picked $Language..'
-            sh '''
-            '''
-            sh '''
-                echo "Running bin file"
-                
+            echo 'picked $(param.Language)'                
             '''
          }
       }
