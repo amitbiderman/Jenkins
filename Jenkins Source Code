@@ -3,5 +3,12 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 node{
   stage('Scm Checkout'){
       echo "Running code from picked language ${params.Language}"
+  
+  stage('Execute C exe file') {
+     steps {
+      
+      
+      
+      
       }
 }      
