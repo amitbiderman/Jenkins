@@ -31,7 +31,6 @@ pipeline {
           }
       }
     }
-  }
           stage('Execute bash script') {  
              steps {
           script {
