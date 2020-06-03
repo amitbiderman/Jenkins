@@ -1,5 +1,5 @@
 pipeline {
-  agent { node { label 'amitjenkins' } }
+  agent any
 
    stages {
       stage('Clone Sources') {
