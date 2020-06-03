@@ -22,7 +22,7 @@ agent any
          steps {
             echo 'Execute python script'
               sh '''
-              cd ${WORKSPACE}/Python_Script.py
+              "./ cd ${WORKSPACE}/Python_Script.py"
               '''
          }
       }
