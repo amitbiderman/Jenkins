@@ -14,19 +14,22 @@ pipeline {
           stage('Execute C exe file') {
              steps {
                 if ((${params.Language} == 'All') || (${params.Language} == 'C')) 
-                    chmod 755 ${WORKSPACE}/scripts/C_Script.c
-                    sh "${WORKSPACE}/scripts/C_Script.c $USER"
-                    sh "gcc C_Script.c -o sampleProgram"
-            }
+                    sh '''
+                        chmod 755 ${WORKSPACE}/scripts/C_Script.c
+                        "${WORKSPACE}/scripts/C_Script.c $USER"
+                        "gcc C_Script.c -o sampleProgram"
+                    '''
+                }
+              }
           }
-      }
     
           stage('Execute python script') {
              steps {
                 if ((${params.Language} == 'All') || (${params.Language} == 'Python')) 
                   sh '''
                     chmod 755 ${WORKSPACE}/scripts/Python_Script.py
-                    sh "${WORKSPACE}/scripts/Python_Script.py $USER"
+                    "${WORKSPACE}/scripts/Python_Script.py $USER"
+                  '''
             }
           }
       }
@@ -35,7 +38,8 @@ pipeline {
                 if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) 
                     sh '''
                         chmod 755 ${WORKSPACE}/scripts/Bash_Script.sh
-                        sh "${WORKSPACE}/scripts/Bash_Script.sh $USER"
+                        "${WORKSPACE}/scripts/Bash_Script.sh $USER"
+                    '''
               }
           }
       }
