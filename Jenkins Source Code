@@ -15,8 +15,6 @@ pipeline {
         steps {
           /C_Script.cy 
           $ gcc C_Script.c -o sampleProgram
-      
-      
-      
       }
-}      
+    }
+}  
