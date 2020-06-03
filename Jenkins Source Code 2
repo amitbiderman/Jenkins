@@ -7,7 +7,7 @@ pipeline {
           checkout scm
         } 
       }
-      stage('Execute C exe file') {
+      stage('C') {
          steps {
             echo 'Compilation process..'
             sh '''
@@ -18,14 +18,14 @@ pipeline {
             '''
          }
       }
-      stage('Execute python script') {
+      stage('Python') {
          steps {
             echo 'Execute python script'
 
             
          }
       }
-      stage('Execute bash script') {
+      stage('Bash') {
          steps {
             echo 'bash script..'
          }
