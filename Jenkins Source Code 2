@@ -2,6 +2,6 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 
 node{
   stage('Scm Checkout'){
-      echo "Running code from picked language ${params.Language}
+      echo "Running code from picked language ${params.Language}"
       }
 }      
