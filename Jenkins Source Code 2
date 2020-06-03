@@ -13,33 +13,31 @@ pipeline {
           
           stage('Execute C exe file') {
              steps {
-             script {
                 if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
-              sh "gcc C_Script.c -o sampleProgram"
-              sh "./sampleProgram"
+                    chmod 755 ${WORKSPACE}/scripts/C_Script.c
+                    sh "${WORKSPACE}/scripts/C_Script.c $USER"
+                    sh "gcc C_Script.c -o sampleProgram"
             }
           }
       }
-    }
     
           stage('Execute python script') {
              steps {
-          script {
-            if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
-              sh "./Python_Script.py"
+                if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+                  sh '''
+                    chmod 755 ${WORKSPACE}/scripts/Python_Script.py
+                    sh "${WORKSPACE}/scripts/Python_Script.py $USER"
             }
           }
       }
-    }
           stage('Execute bash script') {  
              steps {
-          script {
-            if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
-              sh ".Bash_Script.sh"
+                if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+                    sh '''
+                        chmod 755 ${WORKSPACE}/scripts/Bash_Script.sh
+                        sh "${WORKSPACE}/scripts/Bash_Script.sh $USER"
               }
           }
       }
     }
   }
-}
-     
