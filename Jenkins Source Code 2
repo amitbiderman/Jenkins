@@ -13,7 +13,7 @@ pipeline {
           
           stage('Execute C exe file') {
              steps {
-                if ((${params.Language} == 'All') || (${params.Language} == 'C'))
+                if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
                     sh '''
                         chmod 755 ${WORKSPACE}/scripts/C_Script.c
                         "${WORKSPACE}/scripts/C_Script.c $USER"
@@ -21,18 +21,20 @@ pipeline {
                     '''
                 }
               }
+             }
           stage('Execute python script') {
              steps {
-                if ((${params.Language} == 'All') || (${params.Language} == 'Python')) 
+                if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
                   sh '''
                     chmod 755 ${WORKSPACE}/scripts/Python_Script.py
                     "${WORKSPACE}/scripts/Python_Script.py $USER"
                   '''
             }
           }
+         }
           stage('Execute bash script') {  
              steps {
-                if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) 
+                if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
                     sh '''
                         chmod 755 ${WORKSPACE}/scripts/Bash_Script.sh
                         "${WORKSPACE}/scripts/Bash_Script.sh $USER"
@@ -40,4 +42,5 @@ pipeline {
               }
           }
       }
+     }
     }
