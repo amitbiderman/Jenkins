@@ -1,33 +1,7 @@
 properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
 
-pipeline {
-  agent any
-
-   stages {
-      stage('Clone Sources') {
-        steps {
-          checkout scm
-        } 
+node{
+  stage('Scm Checkout'){
+      echo "Running code from picked language ${params.Language}
       }
-      
-      stage('C') {
-         steps {
-            echo 'picked $(param.Language)'                
-            
-         }
-      }
-      stage('Python') {
-         steps {
-            echo 'Execute python script'
-
-            
-         }
-      }
-      stage('Bash') {
-         steps {
-            echo 'bash script..'
-         }
-      }
-      
-   }
-}
+}      
