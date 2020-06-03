@@ -2,40 +2,28 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 echo "Running code from picked language ${params.Language}"
 
 pipeline {
-  agent { node 
-   stages {
-      stage('Clone Sources') {
+    agent any 
+    stages {
+        
+        stage('Clone Sources') {
         steps {
           checkout scm
         } 
-      }
-    }      
-      stage('Execute C exe file') {
-         steps {
-            echo 'Compilation process..'
-            sh '''
-            '''
-            sh '''
-                echo "Running bin file"
-                
-            '''
-         }
-      }
-      stage('Execute python script') {
-         steps {
-            echo 'Execute python script'
-            sh '''
-              chmod 755 ${WORKSPACE}/scripts/checkUserName.py
-              ${WORKSPACE}/scripts/checkUserName.py $USER
-            '''
-            
-         }
-      }
-      stage('Execute bash script') {
-         steps {
-            echo 'bash script..'
-         }
-      }
-      
-   }
+      } 
+        stage('Build') { 
+            steps {
+                // 
+            }
+        }
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // 
+            }
+        }
+    }
 }
