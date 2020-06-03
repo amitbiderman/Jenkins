@@ -2,14 +2,14 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 echo "Running code from picked language ${params.Language}"
 
 pipeline {
-  agent { node { any } }
-
+  agent { node 
    stages {
       stage('Clone Sources') {
         steps {
           checkout scm
         } 
       }
+    }      
       stage('Execute C exe file') {
          steps {
             echo 'Compilation process..'
