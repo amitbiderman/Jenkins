@@ -13,7 +13,7 @@ pipeline {
       stage('C') {
          steps {
             echo 'picked $(param.Language)'                
-            '''
+            
          }
       }
       stage('Python') {
