@@ -26,7 +26,7 @@ pipeline {
         steps {
           script {
             if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
-              sh echo "DO SOME PYTHON STUFF HERE"
+              sh "echo DO SOME PYTHON STUFF HERE"
             }
           }
       }
