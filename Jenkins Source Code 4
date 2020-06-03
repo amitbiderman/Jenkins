@@ -1,0 +1,27 @@
+properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
+
+node {
+  stage('Scm Checkout'){
+  echo "Running code from picked language ${params.Language}"
+  
+  pipeline {
+  agent any
+
+     stages {
+        stage('Clone Sources') {
+          steps {
+            checkout scm
+          } 
+        }
+
+         steps {
+          script {
+              sh '''
+                  chmod 755 ${WORKSPACE}/scripts/C_Script.c
+                  "${WORKSPACE}/scripts/C_Script.c $USER"
+                  "gcc C_Script.c -o sampleProgram"
+              '''
+            }
+          }
+      }
+    }
