@@ -4,8 +4,6 @@ echo "Running code from picked language ${params.Language}"
 pipeline {
     agent any 
     stages {
-        
-        stages {
       stage('Clone Sources') {
         steps {
           checkout scm
