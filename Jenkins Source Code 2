@@ -3,37 +3,44 @@ echo "Running code from picked language ${params.Language}"
 
 pipeline {
     agent any 
-    stages {
-      stage('Clone Sources') {
-        steps {
-          checkout scm
-        } 
+    
+        stages {
+          stage('Clone Sources') {
+            steps {
+              checkout scm
+            } 
+          }
+          
+          stage('Execute C exe file') {
+             steps {
+             script {
+                if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+              sh "gcc C_Script.c -o sampleProgram"
+              sh "./sampleProgram"
+            }
+          }
       }
-      stage('Execute C exe file') {
-         steps {
-            echo 'Compilation process..'
-            sh '''
-            '''
-            sh '''
-                echo "Running bin file"
-                
-            '''
-         }
+    }
+    
+          stage('Execute python script') {
+             steps {
+          script {
+            if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+              echo "DO SOME PYTHON STUFF HERE"
+            }
+          }
       }
-      stage('Execute python script') {
-         steps {
-            echo 'Execute python script'
-            sh '''
-              chmod 755 ${WORKSPACE}/scripts/checkUserName.py
-              ${WORKSPACE}/scripts/checkUserName.py $USER
-            '''
-            
-         }
+    }
+  }
+          stage('Execute bash script') {  
+             steps {
+          script {
+            if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+              echo "Do Bash Stuff"
+              }
+          }
       }
-      stage('Execute bash script') {
-         steps {
-            echo 'bash script..'
-         }
-      }
-    }            
-   }
+    }
+  }
+}
+     
