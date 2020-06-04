@@ -25,7 +25,8 @@ agent any
          steps {
             echo 'Execute python script'
               sh '''
-               echo "Running Python"
+               chmod 755 ${WORKSPACE}/scripts/C_Script.c
+                  "${WORKSPACE}/scripts/C_Script.c $USER"
               '''
          }
       }
