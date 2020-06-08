@@ -15,7 +15,7 @@ agent any
             echo 'Compilation process..'
                sh '''
                   gcc C_Script.c -o sampleProgram
-                  sampleProgram 
+                  ${WORKSPACE}/sampleProgram 
                '''
          }
       }
