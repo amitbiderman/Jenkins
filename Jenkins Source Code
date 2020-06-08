@@ -29,7 +29,6 @@ pipeline {
       steps {
         script {
           if ((picked_lang == 'All') || (picked_lang == 'Python')) {
-            steps {
               echo 'Execute python script'
               sh '''
                 chmod 755 ${WORKSPACE}/Python_Script.py
@@ -44,7 +43,6 @@ pipeline {
       steps {
         script {
           if ((picked_lang == 'All') || (picked_lang == 'Bash')) {
-            steps {
               echo 'Executing Bash script'
               sh '''
                 chmod 755 ${WORKSPACE}/Bash_Script.sh
