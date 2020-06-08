@@ -9,7 +9,8 @@ agent any
         steps {
           checkout scm
           }
-          } 
+          }
+   stages {       
        stage('C Script') {
         steps {
          script {
@@ -56,4 +57,4 @@ agent any
         }
         }
         }
-        
+        }
