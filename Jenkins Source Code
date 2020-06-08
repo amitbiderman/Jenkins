@@ -11,9 +11,9 @@ agent any
         } 
       }
        stage('C Script') {
+        steps {
          script {
             if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
-               steps {
                   echo 'Compilation process..'
                      sh '''
                         gcc C_Script.c -o sampleProgram
@@ -24,6 +24,7 @@ agent any
        }
       }
        stage('Python Script') {
+        steps {
          script {
             elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
                steps {
@@ -37,6 +38,7 @@ agent any
        }
       }
        stage('Execute bash script') {
+        steps {
          script {
             elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
                steps {
