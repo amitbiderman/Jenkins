@@ -1,5 +1,7 @@
 properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
-echo "Running code from picked language ${params.Language}"
+echo "Running code from picked language: ${params.Language}"
+
+def picked_lang = params.Language
 
 pipeline {
   agent any
@@ -13,7 +15,7 @@ pipeline {
     stage('C Script') {
       steps {
         script {
-          if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+          if ((picked_lang == 'All') || picked_lang == 'C')) {
             echo 'Compilation process..'
             sh '''
               gcc C_Script.c -o sampleProgram
@@ -26,7 +28,7 @@ pipeline {
     stage('Python Script') {
       steps {
         script {
-          if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+          if ((picked_lang == 'All') || (picked_lang == 'Python')) {
             steps {
               echo 'Execute python script'
               sh '''
@@ -41,7 +43,7 @@ pipeline {
     stage('Execute bash script') {
       steps {
         script {
-          if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+          if ((picked_lang == 'All') || (picked_lang == 'Bash')) {
             steps {
               echo 'Executing Bash script'
               sh '''
