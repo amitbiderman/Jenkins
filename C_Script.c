@@ -1,9 +1,6 @@
 #include <stdio.h>
-int cfileexists(const char * README){
-    /* try to open file to read */
-    FILE *file;
-    if (file = fopen(README, "r")){
-        fclose(file);
-        return 1;
-    }
-    return 0;
+int main() {
+   // printf() displays the string inside quotation
+   printf("Hello, World!");
+   return 0;
+}
