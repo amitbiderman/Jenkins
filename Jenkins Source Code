@@ -15,7 +15,7 @@ pipeline {
     stage('C Script') {
       steps {
         script {
-          if ((picked_lang == 'All') || picked_lang == 'C')) {
+          if ((picked_lang == 'All') || (picked_lang == 'C')) {
             echo 'Compilation process..'
             sh '''
               gcc C_Script.c -o sampleProgram
