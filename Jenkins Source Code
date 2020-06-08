@@ -2,57 +2,56 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 echo "Running code from picked language ${params.Language}"
 
 pipeline {
-agent any 
+  agent any
 
-   stages {
-      stage('Clone Sources') {
-        steps {
-          checkout scm
-            }
-          }
-      stage('C Script') {
-        steps {
-         script {
-            if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
-                  echo 'Compilation process..'
-                     sh '''
-                        gcc C_Script.c -o sampleProgram
-                        ${WORKSPACE}/sampleProgram 
-                     '''
-            }
-           }
-          }
-         }
-      stage('Python Script') {
-        steps {
-         script {
-            if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
-               steps {
-                  echo 'Execute python script'
-                    sh '''
-                     chmod 755 ${WORKSPACE}/Python_Script.py
-                     ${WORKSPACE}/Python_Script.py
-                    '''
-            }
-           }
-          }
-         }
-      stage('Execute bash script') {
-        steps {
-         script {
-            if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
-               steps {
-                  echo 'Executing Bash script'
-                  sh '''
-                     chmod 755 ${WORKSPACE}/Bash_Script.sh
-                     ${WORKSPACE}/Bash_Script.sh
-                  '''
-            }
-           }
-          }
-         }
-            
-        }
-       }
+  stages {
+    stage('Clone Sources') {
+      steps {
+        checkout scm
       }
-     }
+    }
+    stage('C Script') {
+      steps {
+        script {
+          if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+            echo 'Compilation process..'
+            sh '''
+              gcc C_Script.c -o sampleProgram
+              ${WORKSPACE}/sampleProgram
+            '''
+          }
+        }
+      }
+    }
+    stage('Python Script') {
+      steps {
+        script {
+          if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+            steps {
+              echo 'Execute python script'
+              sh '''
+                chmod 755 ${WORKSPACE}/Python_Script.py
+                ${WORKSPACE}/Python_Script.py
+              '''
+            }
+          }
+        }
+      }
+    }
+    stage('Execute bash script') {
+      steps {
+        script {
+          if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+            steps {
+              echo 'Executing Bash script'
+              sh '''
+                chmod 755 ${WORKSPACE}/Bash_Script.sh
+                ${WORKSPACE}/Bash_Script.sh
+              '''
+            }
+          }
+        }
+      }
+    }
+  }
+}
