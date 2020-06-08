@@ -57,7 +57,7 @@ pipeline {
       script {
         if (picked_lang == 'All') {
             echo 'Executing general test script'
-            if ([ -e README.md ]) {
+            if ([ -e ${WORKSPACE}/README.md ]) {
 	            echo "file exists - test complete"
           }
         }
