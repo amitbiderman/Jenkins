@@ -26,7 +26,7 @@ agent any
             echo 'Execute python script'
               sh '''
                chmod 755 ${WORKSPACE}/Python_Script.py
-                  "./${WORKSPACE}/Python_Script.py"
+               ${WORKSPACE}/Python_Script.py
               '''
          }
       }
