@@ -11,38 +11,44 @@ agent any
         } 
       }
        stage('C Script') {
-         if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
-            steps {
-               echo 'Compilation process..'
+         scrip {
+            if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+               steps {
+                  echo 'Compilation process..'
+                     sh '''
+                        gcc C_Script.c -o sampleProgram
+                        ${WORKSPACE}/sampleProgram 
+                     '''
+            }
+         }
+       }
+      }
+       stage('Python Script') {
+         script {
+            elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+               steps {
+                  echo 'Execute python script'
+                    sh '''
+                     chmod 755 ${WORKSPACE}/Python_Script.py
+                     ${WORKSPACE}/Python_Script.py
+                    '''
+            }
+         }
+       }
+      }
+       stage('Execute bash script') {
+       script {
+            elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+               steps {
+                  echo 'Executing Bash script'
                   sh '''
-                     gcc C_Script.c -o sampleProgram
-                     ${WORKSPACE}/sampleProgram 
+                     chmod 755 ${WORKSPACE}/Bash_Script.sh
+                     ${WORKSPACE}/Bash_Script.sh
                   '''
             }
          }
-        }
-       stage('Python Script') {
-         elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
-            steps {
-               echo 'Execute python script'
-                 sh '''
-                  chmod 755 ${WORKSPACE}/Python_Script.py
-                  ${WORKSPACE}/Python_Script.py
-                 '''
-            }
-         }
-        }
-       stage('Execute bash script') {
-         elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
-            steps {
-               echo 'Executing Bash script'
-               sh '''
-                  chmod 755 ${WORKSPACE}/Bash_Script.sh
-                  ${WORKSPACE}/Bash_Script.sh
-               '''
-            }
-         }
-        }
+       }
+      }
       
    }
  }
