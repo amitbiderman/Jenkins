@@ -8,7 +8,8 @@ agent any
       stage('Clone Sources') {
         steps {
           checkout scm
-      
+          }
+          } 
        stage('C Script') {
         steps {
          script {
@@ -18,7 +19,6 @@ agent any
                         gcc C_Script.c -o sampleProgram
                         ${WORKSPACE}/sampleProgram 
                      '''
-            }
             }
             }
             }
@@ -37,7 +37,6 @@ agent any
             }
             }
             }
-            }
        stage('Execute bash script') {
         steps {
          script {
@@ -52,8 +51,6 @@ agent any
             }
             }
             }
-            }
             
-        }
         }
         }
