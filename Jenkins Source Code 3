@@ -1,0 +1,39 @@
+properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
+echo "Running code from picked language ${params.Language}"
+
+if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+                  echo 'Compilation process..'
+                     sh '''
+                        gcc C_Script.c -o sampleProgram
+                        ${WORKSPACE}/sampleProgram 
+                     '''
+} else if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+                  echo 'Execute python script'
+                    sh '''
+                     chmod 755 ${WORKSPACE}/Python_Script.py
+                     ${WORKSPACE}/Python_Script.py
+                    '''
+} else if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+                  echo 'Executing Bash script'
+                  sh '''
+                     chmod 755 ${WORKSPACE}/Bash_Script.sh
+                     ${WORKSPACE}/Bash_Script.sh
+                  '''
+} 
+
+pipeline {
+agent any 
+   stages {
+      stage('Clone Sources') {
+        steps {
+          checkout scm
+        } 
+      }
+      stage('Executed ${params.Language} script) {
+         steps {
+            echo 'Script ran successfuly'         
+            
+        }
+       }
+      }
+     }
