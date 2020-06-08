@@ -10,8 +10,8 @@ agent any
           checkout scm
         } 
       }
-      if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
-         stage('Execute C exe file') {
+       stage('C Script') {
+         if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
             steps {
                echo 'Compilation process..'
                   sh '''
@@ -21,8 +21,8 @@ agent any
             }
          }
         }
-      elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
-         stage('Execute python script') {
+       stage('Python Script') {
+         elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
             steps {
                echo 'Execute python script'
                  sh '''
@@ -32,8 +32,8 @@ agent any
             }
          }
         }
-      elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
-         stage('Execute bash script') {
+       stage('Execute bash script') {
+         elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
             steps {
                echo 'Executing Bash script'
                sh '''
