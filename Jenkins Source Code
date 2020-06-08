@@ -1,5 +1,5 @@
 properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
-echo "Running code from picked language: ${params.Language}"
+echo "Running code from picked language ${params.Language}"
 
 def picked_lang = params.Language
 
@@ -29,6 +29,8 @@ pipeline {
       steps {
         script {
           if ((picked_lang == 'All') || (picked_lang == 'Python')) {
+            steps {
+              echo 'Execute python script'
               sh '''
                 chmod 755 ${WORKSPACE}/Python_Script.py
                 ${WORKSPACE}/Python_Script.py
@@ -42,6 +44,8 @@ pipeline {
       steps {
         script {
           if ((picked_lang == 'All') || (picked_lang == 'Bash')) {
+            steps {
+              echo 'Executing Bash script'
               sh '''
                 chmod 755 ${WORKSPACE}/Bash_Script.sh
                 ${WORKSPACE}/Bash_Script.sh
@@ -51,3 +55,5 @@ pipeline {
         }
       }
     }
+  }
+}
