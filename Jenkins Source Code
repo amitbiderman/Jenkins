@@ -52,16 +52,5 @@ pipeline {
         }
       }
     }
-    stage('Executing general test') {
-    steps {
-      script {
-        if (picked_lang == 'All') {
-            echo 'Executing general test script'
-		if (-f '${WORKSPACE}/README.md') && echo "This file exists!"
-	    }          
-	  }
-        }
-      }
-    }  
   }
 }
