@@ -26,7 +26,7 @@ agent any
       stage('Python Script') {
         steps {
          script {
-            elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+            if ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
                steps {
                   echo 'Execute python script'
                     sh '''
@@ -40,7 +40,7 @@ agent any
       stage('Execute bash script') {
         steps {
          script {
-            elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+            if ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
                steps {
                   echo 'Executing Bash script'
                   sh '''
