@@ -1,6 +1,8 @@
 properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], description: 'You can choose language to run the script', name: 'Language')]), pipelineTriggers([pollSCM('* * * * * ')])])
 echo "Running code from picked language: ${params.Language}"
 
+def picked_lang = params.Language
+
 pipeline {
   agent any
 
@@ -13,7 +15,7 @@ pipeline {
     stage('C Script') {
       steps {
         script {
-          if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
+          if ((picked_lang == 'All') || (picked_lang == 'C')) {
             echo 'picked all or c'  
             }
           }
