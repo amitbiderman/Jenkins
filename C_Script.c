@@ -1,8 +1,8 @@
 #include <stdio.h>
-int cfileexists(const char * README.md){
+int cfileexists(const char * README){
     /* try to open file to read */
     FILE *file;
-    if (file = fopen(README.md, "r")){
+    if (file = fopen(README, "r")){
         fclose(file);
         return 1;
     }
