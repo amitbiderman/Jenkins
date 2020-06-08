@@ -11,7 +11,7 @@ agent any
         } 
       }
        stage('C Script') {
-         scrip {
+         script {
             if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
                steps {
                   echo 'Compilation process..'
@@ -37,7 +37,7 @@ agent any
        }
       }
        stage('Execute bash script') {
-       script {
+         script {
             elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
                steps {
                   echo 'Executing Bash script'
