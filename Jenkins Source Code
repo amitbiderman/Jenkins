@@ -10,33 +10,36 @@ agent any
           checkout scm
         } 
       }
-      stage('Execute C exe file') {
-         steps {
-            echo 'Compilation process..'
+      if ((${params.Language} == 'All') || (${params.Language} == 'C')):
+         stage('Execute C exe file') {
+            steps {
+               echo 'Compilation process..'
+                  sh '''
+                     gcc C_Script.c -o sampleProgram
+                     ${WORKSPACE}/sampleProgram 
+                  '''
+            }
+         }
+      elif ((${params.Language} == 'All') || (${params.Language} == 'Python')) {
+         stage('Execute python script') {
+            steps {
+               echo 'Execute python script'
+                 sh '''
+                  chmod 755 ${WORKSPACE}/Python_Script.py
+                  ${WORKSPACE}/Python_Script.py
+                 '''
+            }
+         }
+      elif ((${params.Language} == 'All') || (${params.Language} == 'Bash')) {
+         stage('Execute bash script') {
+            steps {
+               echo 'Executing Bash script'
                sh '''
-                  gcc C_Script.c -o sampleProgram
-                  ${WORKSPACE}/sampleProgram 
+                  chmod 755 ${WORKSPACE}/Bash_Script.sh
+                  ${WORKSPACE}/Bash_Script.sh
                '''
+            }
          }
-      }
-      stage('Execute python script') {
-         steps {
-            echo 'Execute python script'
-              sh '''
-               chmod 755 ${WORKSPACE}/Python_Script.py
-               ${WORKSPACE}/Python_Script.py
-              '''
-         }
-      }
-      stage('Execute bash script') {
-         steps {
-            echo 'Executing Bash script'
-            sh '''
-               chmod 755 ${WORKSPACE}/Bash_Script.sh
-               ${WORKSPACE}/Bash_Script.sh
-            '''
-         }
-      }
       
    }
 }
