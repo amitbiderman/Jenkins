@@ -1,30 +1,12 @@
 #include <stdlib.h>
 #include "money.h"
 
-struct Money {
-  int amount;
-  char *currency;
-};
+START_TEST(test_money_create) {    
+  Money *m;
+  extern Money *money_create(int, char*);
 
-Money *money_create(int amount, char* currency) {
-  Money *m = malloc(sizeof(Money));
-  if (m == NULL) {
-    return NULL;
-  }
-
-  m->amount = amount;
-  m->currency = currency;
-  return m;
-}
-
-int money_amount(Money* m) {
-  return m->amount;
-}
-
-char *money_currency(Money* m) {
-  return m->currency;
-}
-
-void money_free(Money* m) {
-  free(m);
-}
+  m = money_create(5, "USD");
+  ck_assert_int_eq(money_amount(m), 5);       
+  ck_assert_str_eq(money_currency(m), "USD"); 
+  money_free(m);
+} END_TEST
