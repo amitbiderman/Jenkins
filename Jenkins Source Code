@@ -14,10 +14,8 @@ agent any
          steps {
             echo 'Compilation process..'
             sh '''
-            '''
-            sh '''
-                echo "Running bin file"
-                
+            gcc C_Script.c -o sampleProgram"
+            sh "./sampleProgram"                
             '''
          }
       }
