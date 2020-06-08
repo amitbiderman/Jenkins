@@ -13,10 +13,10 @@ agent any
       stage('Execute C exe file') {
          steps {
             echo 'Compilation process..'
-            sh '''
-            gcc C_Script.c -o sampleProgram"
-            sh "./sampleProgram" 
-            '''
+               sh '''
+                  gcc C_Script.c -o sampleProgram"
+                  ./sampleProgram 
+               '''
          }
       }
       stage('Execute python script') {
