@@ -58,7 +58,7 @@ pipeline {
       script {
         if (picked_lang == 'All') {
             echo 'Executing general test script'
-            if [ -e my_file ] {
+            if ([ -e my_file ]) {
 	            echo "file exists - test complete"
           }
         }
