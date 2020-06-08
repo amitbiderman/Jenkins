@@ -8,7 +8,7 @@ agent any
       stage('Clone Sources') {
         steps {
           checkout scm
-        } 
+      } 
       }
        stage('C Script') {
         steps {
@@ -20,10 +20,10 @@ agent any
                         ${WORKSPACE}/sampleProgram 
                      '''
             }
-           }
-         }
-       }
-      }
+            }
+            }
+            }
+            }
        stage('Python Script') {
         steps {
          script {
@@ -35,10 +35,10 @@ agent any
                      ${WORKSPACE}/Python_Script.py
                     '''
             }
-           }
-         }
-       }
-      }
+            }
+            }
+            }
+            }
        stage('Execute bash script') {
         steps {
          script {
@@ -50,9 +50,9 @@ agent any
                      ${WORKSPACE}/Bash_Script.sh
                   '''
             }
-           }
-         }
-       }
-      }
-      
-   }
+            }
+            }
+            }
+            }
+            
+        }
