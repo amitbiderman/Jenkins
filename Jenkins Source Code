@@ -2,7 +2,6 @@ properties([parameters([choice(choices: ['All', 'Python', 'Bash', 'C'], descript
 echo "Running code from picked language ${params.Language}"
 
 def picked_lang = params.Language
-def FILE = WORKSPACE/README.md
 
 
 pipeline {
@@ -58,7 +57,7 @@ pipeline {
       script {
         if (picked_lang == 'All') {
             echo 'Executing general test script'
-            if ([ -e my_file ]) {
+            if ([ -e README.md ]) {
 	            echo "file exists - test complete"
           }
         }
