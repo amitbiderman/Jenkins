@@ -30,7 +30,11 @@ agent any
       }
       stage('Execute bash script') {
          steps {
-            echo 'bash script..'
+            echo 'Executing Bash script'
+            sh '''
+               chmod 755 ${WORKSPACE}/Bash_Script.sh
+               ${WORKSPACE}/Bash_Script.sh
+            '''
          }
       }
       
