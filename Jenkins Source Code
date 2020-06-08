@@ -51,5 +51,20 @@ pipeline {
         }
       }
     }
+    stage('Executing general test') {
+    steps {
+      script {
+        if ((picked_lang == 'All') {
+            echo 'Executing general test script'
+            sh '''
+            def FILE = WORKSPACE/README.md
+            if test -f "$FILE"; then
+                echo "$FILE exists."              
+            '''
+              
+          }
+        }
+      }
+    }  
   }
 }
