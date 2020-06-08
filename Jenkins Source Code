@@ -54,7 +54,7 @@ pipeline {
     stage('Executing general test') {
     steps {
       script {
-        if ((picked_lang == 'All') {
+        if (picked_lang == 'All') {
             echo 'Executing general test script'
             sh '''
             def FILE = WORKSPACE/README.md
