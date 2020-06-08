@@ -10,7 +10,7 @@ agent any
           checkout scm
         } 
       }
-      if ((${params.Language} == 'All') || (${params.Language} == 'C')):
+      if ((${params.Language} == 'All') || (${params.Language} == 'C')) {
          stage('Execute C exe file') {
             steps {
                echo 'Compilation process..'
